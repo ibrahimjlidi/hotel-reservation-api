@@ -11,6 +11,15 @@ const hotelSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  localisation: {
+    address: { type: String, required: true },
+    city: { type: String },
+    country: { type: String },
+    latitude: { type: Number },
+    longitude: { type: Number }
+  
+  
+  },
   numTelephone: {
     type: String,
     required: true,
@@ -34,6 +43,9 @@ const hotelSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  images: [{
+    type: String, 
+  }],
   chambres: [
     {
       type: mongoose.Schema.Types.ObjectId,

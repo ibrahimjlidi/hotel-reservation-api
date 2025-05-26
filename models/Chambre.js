@@ -1,10 +1,12 @@
 import mongoose from 'mongoose';
 
 const chambreSchema = new mongoose.Schema({
-  numCh: { type: String, required: true },        // Room number
-  typeCh: { type: String, required: true },       // Room type (e.g., Single, Double)
-  imageCh: { type: String, required: true },      // URL to the room image
-  tarif: { type: Number, required: true },        // Room rate per day (tarif)
+  numCh: { type: String, required: true },        
+  typeCh: { type: String, required: true },       
+  imageCh: { type: String, required: true },      
+  tarif: { type: Number, required: true },
+  description: { type: String, required: true },
+ nbLits: { type: Number, required: true },
 }, { timestamps: true });
 
 const Chambre = mongoose.model('Chambre', chambreSchema);

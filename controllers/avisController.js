@@ -1,6 +1,6 @@
 import Avis from '../models/Avis.js';
+import mongoose from 'mongoose';
 
-// Create a new review (Avis)
 export const createAvis = async (req, res) => {
   try {
     const { userId, hotelId, chambreId, rating, comment } = req.body;
@@ -20,7 +20,7 @@ export const createAvis = async (req, res) => {
   }
 };
 
-// Get all reviews for a specific hotel and chambre
+
 export const getAvisByHotelAndChambre = async (req, res) => {
   try {
     const { hotelId, chambreId } = req.params;
@@ -36,7 +36,7 @@ export const getAvisByHotelAndChambre = async (req, res) => {
   }
 };
 
-// Update a review (Avis)
+
 export const updateAvis = async (req, res) => {
   try {
     const { avisId } = req.params;
@@ -57,19 +57,25 @@ export const updateAvis = async (req, res) => {
   }
 };
 
-// Delete a review (Avis)
+
 export const deleteAvis = async (req, res) => {
-  try {
-    const { avisId } = req.params;
-
-    const avis = await Avis.findById(avisId);
-    if (!avis) {
-      return res.status(404).json({ message: 'Review not found.' });
-    }
-
-    await avis.remove();
-    res.status(200).json({ message: 'Review deleted successfully!' });
-  } catch (error) {
+   try {
+     const { avisId } = req.params;
+ 
+    
+     if (!mongoose.Types.ObjectId.isValid(avisId)) {
+       return res.status(400).json({ message: 'Invalid avis ID' });
+     }
+ 
+     const avis = await Avis.findById(avisId);
+     if (!avis) {
+       return res.status(404).json({ message: 'avis not found.' });
+     }
+ 
+     await Avis.deleteOne({ _id: avisId });
+ 
+     res.status(200).json({ message: 'avis deleted successfully!' });
+   } catch (error) {
     res.status(500).json({ message: 'Failed to delete review', error });
   }
 };

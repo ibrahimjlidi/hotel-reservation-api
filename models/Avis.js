@@ -3,32 +3,32 @@ import mongoose from 'mongoose';
 const avisSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Reference to the User model
+    ref: 'User', 
     required: true,
   },
   hotelId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Hotel', // Reference to the Hotel model
+    ref: 'Hotel', 
     required: true,
   },
   chambreId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Chambre', // Reference to the Chambre model
+    ref: 'Chambre', 
     required: true,
   },
   rating: {
     type: Number,
     required: true,
     min: 1,
-    max: 5, // Rating can range from 1 to 5
+    max: 5, 
   },
   comment: {
     type: String,
     required: true,
-    trim: true, // Remove any extra spaces around the comment
+    trim: true, 
   },
 }, {
-  timestamps: true, // Automatically adds createdAt and updatedAt fields
+  timestamps: true, 
 });
 
 const Avis = mongoose.model('Avis', avisSchema);
